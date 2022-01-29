@@ -16,9 +16,9 @@ export const Assignment1 = () => {
             <View style={{ marginHorizontal: 20, marginTop: 10 }}>
                 <Text style={{ fontWeight: '600', color: colorCode, fontSize: 17 }} >{`${isTotal} characters remaining`}</Text>
             </View>
-            <TouchableOpacity activeOpacity={0.8} onPress={()=> navigation.navigate('Assignment2')} style={styles.button_style}>
+            {/* <TouchableOpacity activeOpacity={0.8} onPress={()=> navigation.navigate('Assignment2')} style={styles.button_style}>
                 <Text style={{ fontSize: 18, color: 'white',fontWeight : 'bold' }}>{"Next"}</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
         </SafeAreaView>
     )
 }
