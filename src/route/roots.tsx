@@ -6,6 +6,9 @@ import { Assignment2 } from '../assignment/Assignment2';
 import { IndexFile } from '../assignment/IndexFile';
 import { Assignment3 } from '../assignment/Assignment3';
 import { Assignmen3Checkout } from '../assignment/Assignment3.1';
+// import { Assignment4 } from '../assignment/Assignment4';
+import { Assignment5 } from '../assignment/Assignment5';
+import { Assignment6 } from '../assignment/Assignment6';
 const Stack = createNativeStackNavigator<ReateNativeStackTypes>();
 export const TutorialStack: React.FC = () => {
     return (
@@ -15,6 +18,9 @@ export const TutorialStack: React.FC = () => {
             <Stack.Screen name={'Assignment2'} component={Assignment2} />
             <Stack.Screen name={'Assignment3'} component={Assignment3} />
             <Stack.Screen name={'Assignmen3Checkout'} component={Assignmen3Checkout} />
+            {/* <Stack.Screen name={'Assignment4'} component={Assignment4} /> */}
+            <Stack.Screen name={'Assignment5'} component={Assignment5} />
+            <Stack.Screen name={'Assignment6'} component={Assignment6} />
         </Stack.Navigator>
     )
 }

@@ -17,6 +17,15 @@ export const IndexFile = () => {
                 <TouchableOpacity onPress={() => navigation.navigate('Assignment3')} style={styles.button_style}>
                     <Text style={styles.text_style}>{"Assignment 3"}</Text>
                 </TouchableOpacity>
+                {/* <TouchableOpacity onPress={() => navigation.navigate('Assignment4')} style={styles.button_style}>
+                    <Text style={styles.text_style}>{"Assignment 4"}</Text>
+                </TouchableOpacity> */}
+                <TouchableOpacity onPress={() => navigation.navigate('Assignment5')} style={styles.button_style}>
+                    <Text style={styles.text_style}>{"Assignment 5"}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Assignment6')} style={styles.button_style}>
+                    <Text style={styles.text_style}>{"Assignment 6"}</Text>
+                </TouchableOpacity>
             </ScrollView>
 
 
