@@ -1,7 +1,6 @@
-const AlbumCard = () => {
+const AlbumCard = ({album } : any) => {
     return (
-      <div className="grid grid-cols-5 gap-4">
-        <div className="bg-gray-800 p-4 rounded relative">
+      <div className="bg-gray-800 p-4 rounded relative">
           <div className="relative">
             <img
               src="https://via.placeholder.com/150"
@@ -14,9 +13,9 @@ const AlbumCard = () => {
           </div>
   
           <div className="text-left">
-            <h3 className="text-md font-bold mb-1">Album Name</h3>
-            <p className="text-sm mb-2 text-gray-400">By Singer</p>
-            <p className="text-sm mb-2 text-green-200">$9.99</p>
+            <h3 className="text-md font-bold mb-1">{album.name}</h3>
+            <p className="text-sm mb-2 text-gray-400">By {album.singers.join(", ")}</p>
+            <p className="text-sm mb-2 text-green-200">${album.price}</p>
   
             <a
               href="#"
@@ -26,7 +25,6 @@ const AlbumCard = () => {
               <span className="ml-1">Add to Cart</span>
             </a>
           </div>
-        </div>
       </div>
     );
   };
