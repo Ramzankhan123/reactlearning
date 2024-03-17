@@ -1,11 +1,18 @@
 import { useState } from "react";
 
 const LoginForm = () => {
-  const [email, setEmail] = useState("");
-  const [passs, setPass] = useState("");
+  const [formState,setFormState]  = useState({
+    email: '',
+    password: ''
+  })
+
+  const onChangeHandler = (e: any) =>{
+    const { name , value } = e.target;
+    setFormState({...formState,[name]:value})
+  }
 
   const onLogin = () => {
-    console.log(">>>>", email,passs);
+    console.log(">>>>", formState);
   };
   return (
     <form
@@ -17,11 +24,11 @@ const LoginForm = () => {
       <p>
         <label htmlFor="email">
           Email
-          <input name="email" onChange={(e) => setEmail(e.target.value)} />
+          <input name="email" onChange={onChangeHandler} />
         </label>
         <label htmlFor="password">
           Password
-          <input type={'Password'} name="password" onChange={(e) => setPass(e.target.value)} />
+          <input type={'Password'} name="password" onChange={onChangeHandler} />
         </label>
       </p>
       <button>Submit</button>
