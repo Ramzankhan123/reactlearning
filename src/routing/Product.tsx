@@ -1,4 +1,3 @@
-import React from 'react'
 import { Route, Link, useParams, Routes} from 'react-router-dom'
 
 const Products = () =>{
