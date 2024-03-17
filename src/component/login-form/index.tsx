@@ -1,16 +1,23 @@
-import yup from "yup"; // provides validation for it
+import * as Yup from "yup";// provides validation for it
 import { Formik } from "formik"; // providdes access of controls forms value
 
 /* 
 formik provide HOC 
 */
 
+const loginFormSchema = Yup.object().shape({
+    email: Yup.string().email().required(),
+    password: Yup.string().required().min(8, "Password is too short"),
+});
+
 const LoginForm = () => {
   return (
-    <Formik onSubmit={(values) => {
+    <Formik
+     validationSchema={loginFormSchema}
+     onSubmit={(values) => {
         console.log(">>>",values)
     }} initialValues={{}}>
-      {({handleSubmit,handleChange,handleBlur}) => {
+      {({handleSubmit,handleChange,handleBlur,errors}) => {
         return (
           <div className="bg-gray-800 p-10 w-96 rounded-lg">
             <h1 className="text-3xl font-bold mb-6">Login</h1>
@@ -25,6 +32,9 @@ const LoginForm = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
+                {errors?.email && (
+                  <span className="text-red-600">{errors?.email}</span>
+                )}
               </div>
 
               <div className="mb-4">
@@ -37,6 +47,9 @@ const LoginForm = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
+                {errors?.password && (
+                  <span className="text-red-600">{errors?.password}</span>
+                )}
               </div>
 
               <button
