@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Menu from "./menu";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Album } from "../../interfaces/Album";
+import { ThemeContext, ThemeOptions } from "../../context/theme";
 
 // function abc(){}
 // const abc = function(){}
@@ -10,7 +11,6 @@ import { Album } from "../../interfaces/Album";
 
 // props = type of {}
 // Object Destructing
-
 
 interface props {
   title: string;
@@ -25,9 +25,15 @@ interface reduxstate {
 const Header = ({ title }: props) => {
   // const { title, date } = props;
 
+  const { theme, change } = useContext(ThemeContext);
+  const bgHeader =
+    theme === ThemeOptions.dark
+      ? "bg-gray-800 text-white"
+      : "bg-gray-200 text-black";
+
   const [showMenu, setShowMenu] = useState(false);
 
-  const cartItems = useSelector((state : reduxstate) => {
+  const cartItems = useSelector((state: reduxstate) => {
     return state?.cart?.items;
   });
 
@@ -36,11 +42,27 @@ const Header = ({ title }: props) => {
   };
 
   return (
-    <header className="bg-gray-800 text-white p-4 flex justify-between items-center">
+    <header className={`${bgHeader} p-4 flex justify-between items-center`}>
       <h1 className="text-2xl">
         <Link to="/">{title}</Link>
       </h1>
       <div className="flex items-center">
+        <span
+          onClick={() => {
+            change(ThemeOptions.light);
+          }}
+          className="p-4"
+        >
+          Light
+        </span>
+        <span
+          onClick={() => {
+            change(ThemeOptions.dark);
+          }}
+          className="p-4"
+        >
+          Dark
+        </span>
         <Link to="/cart" className="mr-6">
           <span className="material-icons">shopping_cart</span>
           {cartItems.length}
