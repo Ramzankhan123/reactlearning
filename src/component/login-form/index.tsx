@@ -16,7 +16,10 @@ const LoginForm = () => {
      validationSchema={loginFormSchema}
      onSubmit={(values) => {
         console.log(">>>",values)
-    }} initialValues={{}}>
+    }} initialValues={{
+      email: "",
+      password: "",
+    }}>
       {({handleSubmit,handleChange,handleBlur,errors}) => {
         return (
           <div className="bg-gray-800 p-10 w-96 rounded-lg">

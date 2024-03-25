@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Header from "./component/header";
 import Footer from "./component/footer";
 import { Route, Routes } from "react-router-dom";
@@ -13,7 +12,6 @@ function App() {
     <>
       <Header
         title="Awesome Music Store"
-        date={new Date().toISOString()}
       />
       <main className="container mx-auto p-8">
         <Routes>
