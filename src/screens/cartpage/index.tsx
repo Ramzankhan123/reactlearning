@@ -1,12 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
-import { removeFromCart } from "../../store/slices/cart";
+import { CartSliceState, removeFromCart } from "../../store/slices/cart";
 import { Album } from "../../interfaces/Album";
+import { useNavigate } from "react-router-dom";
+import { placeOrder } from "../../store/async-action/cart";
 
 const CartpageScreen = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const cartItems = useSelector((state: { cart: { items: Album[]}}) => {
-    return state?.cart?.items;
+  const cart = useSelector((state: { cart: CartSliceState  }) => {
+    return state?.cart;
   });
 
   return (
@@ -14,8 +17,8 @@ const CartpageScreen = () => {
       <h1 className="text-3xl font-bold mb-6">Your Cart</h1>
 
       <div className="divide-y divide-gray-700">
-        {cartItems.length > 0 &&
-          cartItems.map((album :Album) => {
+        {cart.items.length > 0 &&
+          cart.items.map((album: Album) => {
             return (
               <div className="py-4 flex items-center justify-between">
                 <div className="flex items-center space-x-4">
@@ -73,8 +76,15 @@ const CartpageScreen = () => {
       </div>
 
       <div className="mt-6">
-        <button className="bg-green-400 text-white px-8 py-3 rounded hover:bg-green-300 w-full">
-          Checkout
+        <button
+          disabled={cart.order.loading}
+          onClick={() => {
+            dispatch(placeOrder(cart.items));
+            navigate("/");
+          }}
+          className="bg-green-400 text-white px-8 py-3 rounded hover:bg-green-300 w-full"
+        >
+          {!cart.order.loading ? "Checkout" : "Placing ordering"}
         </button>
       </div>
     </>
