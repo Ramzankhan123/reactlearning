@@ -2,6 +2,7 @@ import { useState } from "react";
 import Menu from "./menu";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Album } from "../../interfaces/Album";
 
 // function abc(){}
 // const abc = function(){}
@@ -10,12 +11,23 @@ import { useSelector } from "react-redux";
 // props = type of {}
 // Object Destructing
 
-const Header = ({ title }: any) => {
+
+interface props {
+  title: string;
+}
+
+interface reduxstate {
+  cart: {
+    items: Album[];
+  };
+}
+
+const Header = ({ title }: props) => {
   // const { title, date } = props;
 
   const [showMenu, setShowMenu] = useState(false);
 
-  const cartItems = useSelector((state) => {
+  const cartItems = useSelector((state : reduxstate) => {
     return state?.cart?.items;
   });
 

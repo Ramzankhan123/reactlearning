@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 import { getAlbum } from "../../model/albums/api";
 
 const AlbumDetailpageScreen = () => {
-  const params = useParams();
+  const params = useParams<{ id : string }>();
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [data, setData] = useState(null);
+  const [_error, setError] = useState(null);
+  const [_data, setData] = useState(null);
 
   useEffect(() => {
     const callApi = async () => {
@@ -16,7 +16,7 @@ const AlbumDetailpageScreen = () => {
         const data = await getAlbum(params.id);
         console.log("=====>>",data)
         setData(data);
-      } catch (error) {;
+      } catch (error : any) {;
         setError(error);
         navigate("/404");
       } finally {

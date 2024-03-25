@@ -1,8 +1,13 @@
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { addToCart } from "../../store/slices/cart";
+import { Album } from "../../interfaces/Album";
 
-const AlbumCard = ({ album }: any) => {
+interface props {
+  album: Album;
+}
+
+const AlbumCard = ({ album }: props) => {
  const dispatch = useDispatch();
   return (
     <div className="bg-gray-800 p-4 rounded relative">

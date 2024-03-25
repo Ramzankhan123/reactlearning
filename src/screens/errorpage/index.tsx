@@ -1,4 +1,8 @@
-const ErrorpageScreen = ({ show = null } : any) => {
+interface props {
+  show?: null | string
+}
+
+const ErrorpageScreen = ({ show = null } : props) => {
   if (show) {
     return <div>{show}</div>;
   }
