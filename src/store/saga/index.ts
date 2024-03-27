@@ -1,13 +1,10 @@
 import { call, takeEvery, put } from "redux-saga/effects";
+import axios from "axios";
 
 // worker function
 function getTodos() {
   console.log("fetchTodos");
-  return fetch("https://jsonplaceholder.typicode.com/todos").then(
-    (response) => {
-      return response.json();
-    }
-  );
+  return axios("https://jsonplaceholder.typicode.com/todos", { method: "GET" });
 }
 
 // Worker saga
