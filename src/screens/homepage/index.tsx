@@ -3,10 +3,13 @@ import AlbumList from "../../component/album-list";
 import { getAlbums } from "../../model/albums/api";
 import { Album } from "../../interfaces/Album";
 import { Carousel } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTodos } from "../../store/actions/todo";
 
 const HomepageScreen = () => {
   const [topAlbums, setTopAlbums] = useState<null | Album[]>(null);
   const [latestAlbums, setLatestAlbums] = useState<null | Album[]>(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const callApi = async () => {
@@ -16,7 +19,14 @@ const HomepageScreen = () => {
       setLatestAlbums(latestAlbumsData);
     };
     callApi();
+    dispatch(fetchTodos());
   }, []);
+
+  const todos = useSelector((state: any) => {
+    return state?.todos?.todos;
+  });
+
+  console.log("====>>>>>>",todos);
 
   return (
     <>
