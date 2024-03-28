@@ -6,11 +6,24 @@ import { Carousel } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTodos } from "../../store/actions/todo";
 import { useAlbumsListing } from "../../hooks/useAlbumsListing";
+import { gql, useQuery } from "@apollo/client";
+
+const GET_USER_QUERY = gql`
+  query GetUserQuery {
+    users {
+      name
+      username
+      id
+    }
+  }
+`;
 
 const HomepageScreen = () => {
   const dispatch = useDispatch();
-  const { data : topAlbums } = useAlbumsListing("top-albums");
-  const { data : latestAlbums } = useAlbumsListing("latest-albums");
+  const { data: topAlbums } = useAlbumsListing("top-albums");
+  const { data: latestAlbums } = useAlbumsListing("latest-albums");
+
+  const { loading, data } = useQuery<{ users: any[] }>(GET_USER_QUERY);
 
   useEffect(() => {
     dispatch(fetchTodos());
@@ -20,7 +33,7 @@ const HomepageScreen = () => {
     return state?.todos?.todos;
   });
 
-  console.log("====>>>>>>",todos);
+  console.log("====>>>>>>", todos);
 
   return (
     <>
@@ -68,6 +81,18 @@ const HomepageScreen = () => {
           className="rounded w-full"
         /> */}
       </section>
+      <ul>
+        {data &&
+          data?.users &&
+          data?.users.length > 0 &&
+          data?.users.map((user: any) => {
+            return (
+              <li key={user.id}>
+                {user.name}, {user.username}
+              </li>
+            );
+          })}
+      </ul>
       <AlbumList list={topAlbums} title="Top Albums" />
       <AlbumList list={latestAlbums} title="Latest Albums" />
     </>
