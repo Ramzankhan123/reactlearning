@@ -6,7 +6,7 @@ import { Carousel } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTodos } from "../../store/actions/todo";
 import { useAlbumsListing } from "../../hooks/useAlbumsListing";
-import { gql, useQuery } from "@apollo/client";
+import { gql, useMutation, useQuery } from "@apollo/client";
 
 const GET_USER_QUERY = gql`
   query GetUserQuery {
@@ -18,14 +18,35 @@ const GET_USER_QUERY = gql`
   }
 `;
 
+const ADD_USER_MUTATION = gql`
+  mutation AddUser($user: UserInput) {
+    addUser(user: $user) {
+      id
+    }
+  }
+`;
+
 const HomepageScreen = () => {
   const dispatch = useDispatch();
   const { data: topAlbums } = useAlbumsListing("top-albums");
   const { data: latestAlbums } = useAlbumsListing("latest-albums");
 
   const { loading, data } = useQuery<{ users: any[] }>(GET_USER_QUERY);
+  const [addUser, { data: mutationData }] = useMutation(ADD_USER_MUTATION, {
+    variables: {
+      user: {
+        email: "1@example.com",
+        name: "1@example.com",
+        phone: "1@example.com",
+        username: "1@example.com",
+        website: "1@example.com",
+      },
+    },
+  });
+
 
   useEffect(() => {
+    addUser();
     dispatch(fetchTodos());
   }, []);
 
@@ -33,7 +54,7 @@ const HomepageScreen = () => {
     return state?.todos?.todos;
   });
 
-  console.log("====>>>>>>", todos);
+  console.log("====>>>>>>", todos,mutationData);
 
   return (
     <>
