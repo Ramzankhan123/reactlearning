@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import AlbumList from "../../component/album-list";
-import { getAlbums } from "../../model/albums/api";
-import { Album } from "../../interfaces/Album";
 import { Carousel } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTodos } from "../../store/actions/todo";
@@ -31,7 +29,7 @@ const HomepageScreen = () => {
   const { data: topAlbums } = useAlbumsListing("top-albums");
   const { data: latestAlbums } = useAlbumsListing("latest-albums");
 
-  const { loading, data } = useQuery<{ users: any[] }>(GET_USER_QUERY);
+  const { data } = useQuery<{ users: any[] }>(GET_USER_QUERY);
   const [addUser, { data: mutationData }] = useMutation(ADD_USER_MUTATION, {
     variables: {
       user: {

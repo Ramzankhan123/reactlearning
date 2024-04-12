@@ -8,7 +8,7 @@ function getTodos() {
 }
 
 // Worker saga
-function* fetchTodosSaga() {
+function* fetchTodosSaga() : any {
   try {
     const data = yield call(getTodos);
     yield put({ type: "GET_TODOS_SUCCESS", payload: data });

@@ -3,7 +3,7 @@ import Menu from "./menu";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Album } from "../../interfaces/Album";
-import { ThemeContext, ThemeOptions } from "../../context/theme";
+import {ThemeOptions } from "../../context/theme";
 import { useTheme } from "../../hooks/useTheme";
 
 // function abc(){}

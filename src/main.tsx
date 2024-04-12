@@ -9,8 +9,7 @@ import { ThemeProvider } from "./context/theme.tsx";
 import {
   ApolloClient,
   InMemoryCache,
-  ApolloProvider,
-  gql,
+  ApolloProvider
 } from "@apollo/client";
 import "bootstrap/dist/css/bootstrap.min.css";
 
